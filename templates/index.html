@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Input Form</title>
+    <title>User Input Form - Server IP: {{ server_ip }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <h1>User Input Form</h1>
+    <p>Server IP: {{ server_ip }}</p>
     <form action="/submit" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
