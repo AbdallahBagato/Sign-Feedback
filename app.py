@@ -1,7 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pymysql
+import socket  # Import the socket library
 
 app = Flask(__name__)
+
+# Function to get the server's IP address
+def get_server_ip():
+    hostname = socket.gethostname()
+    ip_address = socket.gethostbyname(hostname)
+    return ip_address
 
 # Database configuration
 DB_HOST = 'your-rds-endpoint'
@@ -36,7 +43,8 @@ def create_table():
 # Home route with form
 @app.route('/')
 def index():
-    return render_template('index.html')
+    server_ip = get_server_ip()  # Get the server's IP address
+    return render_template('index.html', server_ip=server_ip)  # Pass the IP to the template
 
 # Handle form submission
 @app.route('/submit', methods=['POST'])
